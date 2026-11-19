@@ -6,12 +6,12 @@ Windows 10/11 ish stolidagi fayl, papka va dastur yorliqlarini ko‘chiriladigan
 
 ## Yuklab olish
 
-[Releases](https://github.com/Kingprogrammer07/Pickets-UZ/releases) sahifasidan `Pickets-UZ.exe` faylini yuklab oling. Uni doimiy papkaga, masalan `C:\Programs\Pickets-UZ` ichiga qo‘ying va ishga tushiring. Bu ko‘chma versiya: o‘rnatgich va alohida .NET o‘rnatish talab qilinmaydi.
+[Releases](https://github.com/Kingprogrammer07/Pickets-UZ/releases) sahifasidan `Pickets-UZ-v1.0.2-uz.1-win-x64.zip` arxivini yuklab oling. Uni doimiy papkaga, masalan `C:\Programs\Pickets-UZ` ichiga chiqaring va `Pickets-UZ.exe` ni ishga tushiring. Bu ko‘chma versiya: o‘rnatgich va alohida .NET o‘rnatish talab qilinmaydi.
 
 Windows SmartScreen noma’lum nashriyot haqida ogohlantirishi mumkin, chunki fayl raqamli imzolanmagan. Yuklab olingan faylning SHA-256 summasini release’dagi `SHA256SUMS.txt` bilan solishtiring:
 
 ```powershell
-Get-FileHash .\Pickets-UZ.exe -Algorithm SHA256
+Get-FileHash .\Pickets-UZ-v1.0.2-uz.1-win-x64.zip -Algorithm SHA256
 ```
 
 ## Boshlash
