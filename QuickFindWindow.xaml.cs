@@ -40,10 +40,10 @@ public partial class QuickFindWindow : AccessibleDialogWindow
         var matches = Find(_app.Pickets, Query.Text);
         Results.ItemsSource = matches.Take(200).ToArray();
         Results.SelectedIndex = matches.Length == 0 ? -1 : 0;
-        SearchStatus.Text = string.IsNullOrWhiteSpace(Query.Text) ? "Type a name to find a reference."
-            : matches.Length == 0 ? "No matching references."
-            : matches.Length > 200 ? $"{matches.Length} matches — showing 200. Refine your search."
-            : $"{matches.Length} match{(matches.Length == 1 ? "" : "es")}. Enter jumps to the selection.";
+        SearchStatus.Text = string.IsNullOrWhiteSpace(Query.Text) ? "Havolani topish uchun nom yozing."
+            : matches.Length == 0 ? "Mos havola topilmadi."
+            : matches.Length > 200 ? $"{matches.Length} ta natijadan 200 tasi ko‘rsatilmoqda. Qidiruvni aniqlashtiring."
+            : $"{matches.Length} ta natija. Tanlanganiga o‘tish uchun Enter bosing.";
     }
     private void Results_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {

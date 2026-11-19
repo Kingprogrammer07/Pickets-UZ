@@ -10,7 +10,7 @@ public partial class AboutWindow : AccessibleDialogWindow
     public AboutWindow()
     {
         InitializeComponent();
-        VersionText.Text = $"Version {DiagnosticsInfo.Version}";
+        VersionText.Text = $"Versiya {DiagnosticsInfo.Version}";
     }
 
     private void CopyDiagnostics_Click(object sender, RoutedEventArgs e)
@@ -18,12 +18,12 @@ public partial class AboutWindow : AccessibleDialogWindow
         try
         {
             Clipboard.SetText(DiagnosticsInfo.BuildSanitizedSummary());
-            MessageBox.Show(this, "Sanitized diagnostics copied to the clipboard.", "Pickets",
+            MessageBox.Show(this, "Shaxsiy ma’lumotlari yashirilgan diagnostika nusxalandi.", "Pickets",
                 MessageBoxButton.OK, MessageBoxImage.Information);
         }
         catch (Exception ex)
         {
-            MessageBox.Show(this, $"Could not copy diagnostics.\n\n{ex.Message}", "Pickets",
+            MessageBox.Show(this, $"Diagnostika ma’lumotlarini nusxalab bo‘lmadi.\n\n{ex.Message}", "Pickets",
                 MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
@@ -46,7 +46,7 @@ public partial class AboutWindow : AccessibleDialogWindow
     {
         try
         {
-            Process.Start(new ProcessStartInfo("https://github.com/Creeptones/Pickets")
+            Process.Start(new ProcessStartInfo("https://github.com/Kingprogrammer07/Pickets-UZ")
                 { UseShellExecute = true });
         }
         catch (Exception ex)

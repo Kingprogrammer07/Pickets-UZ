@@ -147,7 +147,7 @@ public partial class PicketWindow
     {
         if (SelectionActions == null || _boxStart != null) return;
         var count = ItemsHost.SelectedItems.Count;
-        SelectionCount.Text = $"{count} selected";
+        SelectionCount.Text = $"{count} ta tanlangan";
         SelectionActions.Visibility = count > 1 && !_isCollapsed ? Visibility.Visible : Visibility.Collapsed;
     }
     private void SelectionClear_Click(object sender, RoutedEventArgs e) { ItemsHost.UnselectAll(); ItemsHost.Focus(); }
@@ -165,7 +165,7 @@ public partial class PicketWindow
             entry.Click += (_, _) => MoveReferencesTo(selected, target);
             menu.Items.Add(entry);
         }
-        if (menu.Items.Count == 0) menu.Items.Add(new MenuItem { Header = "No other pickets", IsEnabled = false });
+        if (menu.Items.Count == 0) menu.Items.Add(new MenuItem { Header = "Boshqa guruh yo‘q", IsEnabled = false });
         menu.IsOpen = true;
     }
     private void SelectionSize_Click(object sender, RoutedEventArgs e)
@@ -175,7 +175,7 @@ public partial class PicketWindow
         var menu = new ContextMenu { PlacementTarget = button, Placement = PlacementMode.Bottom };
         foreach (var large in new[] { false, true })
         {
-            var entry = new MenuItem { Header = large ? "Large icons" : "Small icons", IsEnabled = selected.Length > 0 };
+            var entry = new MenuItem { Header = large ? "Katta belgilar" : "Kichik belgilar", IsEnabled = selected.Length > 0 };
             entry.Click += (_, _) => SetIconSizes(selected, large);
             menu.Items.Add(entry);
         }
@@ -187,7 +187,7 @@ public partial class PicketWindow
         foreach (var entry in changed) entry.Item.IsLarge = large;
         RaiseLayoutChanged();
         if (changed.Length > 0 && Application.Current is App app)
-            app.RecordUndo("Icon size changed", () =>
+            app.RecordUndo("Belgi o‘lchami o‘zgartirildi", () =>
             {
                 foreach (var entry in changed) entry.Item.IsLarge = entry.Before;
                 RaiseLayoutChanged();

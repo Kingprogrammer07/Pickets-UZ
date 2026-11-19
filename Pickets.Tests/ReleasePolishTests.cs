@@ -69,10 +69,10 @@ public sealed class ReleasePolishTests
     {
         var item = PicketItem.FromPath(@"Z:\Music\Mix.wav");
         item.IsMissing = true;
-        Assert.Equal("Unavailable", item.StatusText);
-        Assert.Contains("Check again", item.ReferenceHelp);
+        Assert.Equal("Mavjud emas", item.StatusText);
+        Assert.Contains("Qayta tekshirish", item.ReferenceHelp);
         Assert.Contains(item.Path, item.ReferenceHelp);
-        Assert.Contains("Unavailable", item.AccessibleName);
+        Assert.Contains("Mavjud emas", item.AccessibleName);
     }
 }
 

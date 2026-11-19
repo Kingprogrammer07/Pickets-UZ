@@ -29,7 +29,7 @@ public partial class PicketWindow
     {
         Title = TitleText.Text + " — Pickets";
         AutomationProperties.SetName(TitleToggle, TitleText.Text);
-        AutomationProperties.SetName(ItemsHost, TitleText.Text + " references");
+        AutomationProperties.SetName(ItemsHost, TitleText.Text + " ta havola");
     }
 
     private void FocusItem(int index)

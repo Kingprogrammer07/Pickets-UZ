@@ -156,7 +156,7 @@ public static class LayoutStore
         {
             var layout = ParseWithMigration(File.ReadAllText(path));
             if (layout == null)
-                error = "The file is not a recognized Pickets layout.";
+                error = "Bu fayl Pickets tartibi sifatida tanilmadi.";
             else
                 Normalize(layout);
             return layout;

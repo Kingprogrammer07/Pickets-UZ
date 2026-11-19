@@ -29,7 +29,7 @@ public partial class PicketWindow
             var sourceId = PicketId;
             var targetId = target.PicketId;
             var saved = before.Where(entry => moved.Contains(entry.Item)).ToArray();
-            app.RecordUndo($"{moved.Count} item{(moved.Count == 1 ? "" : "s")} moved", () =>
+            app.RecordUndo($"{moved.Count} ta element ko‘chirildi", () =>
             {
                 var source = app.Pickets.FirstOrDefault(p => p.PicketId == sourceId);
                 var destination = app.Pickets.FirstOrDefault(p => p.PicketId == targetId);
@@ -58,13 +58,13 @@ public partial class PicketWindow
 
     private void AddFiles()
     {
-        var dialog = new OpenFileDialog { Title = "Add file references to Pickets", Multiselect = true, CheckFileExists = true };
+        var dialog = new OpenFileDialog { Title = "Pickets’ga fayl havolalarini qo‘shish", Multiselect = true, CheckFileExists = true };
         if (dialog.ShowDialog(this) == true) AddReferences(dialog.FileNames, captureDesktop: false);
     }
 
     private void AddFolder()
     {
-        var dialog = new OpenFolderDialog { Title = "Add folder references to Pickets", Multiselect = true };
+        var dialog = new OpenFolderDialog { Title = "Pickets’ga papka havolalarini qo‘shish", Multiselect = true };
         if (dialog.ShowDialog(this) == true) AddReferences(dialog.FolderNames, captureDesktop: false, folders: true);
     }
 
@@ -110,14 +110,14 @@ public partial class PicketWindow
     private void ItemMenu_LocateFile_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not MenuItem { DataContext: PicketItem item }) return;
-        var dialog = new OpenFileDialog { Title = "Locate this reference's file", CheckFileExists = true };
+        var dialog = new OpenFileDialog { Title = "Havola qilingan faylni topish", CheckFileExists = true };
         if (dialog.ShowDialog(this) == true) ReplaceReference(item, dialog.FileName, false);
     }
 
     private void ItemMenu_LocateFolder_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not MenuItem { DataContext: PicketItem item }) return;
-        var dialog = new OpenFolderDialog { Title = "Locate this reference's folder" };
+        var dialog = new OpenFolderDialog { Title = "Havola qilingan papkani topish" };
         if (dialog.ShowDialog(this) == true) ReplaceReference(item, dialog.FolderName, true);
     }
 
@@ -125,7 +125,7 @@ public partial class PicketWindow
     {
         if (Items.Any(i => i != item && string.Equals(i.Path, path, StringComparison.OrdinalIgnoreCase)))
         {
-            MessageBox.Show(this, "That reference is already in this picket.", "Pickets");
+            MessageBox.Show(this, "Bu havola ushbu guruhda allaqachon bor.", "Pickets");
             return;
         }
         if (!ReleaseReferenceCapture(item)) return;
@@ -146,7 +146,7 @@ public partial class PicketWindow
             item.OriginalDesktopPos = null;
             return true;
         }
-        MessageBox.Show(this, "Windows could not restore the original desktop icon. The reference has been kept so you can check its availability and try again.",
+        MessageBox.Show(this, "Windows ish stolidagi asl belgini tiklay olmadi. Havola saqlandi; fayl mavjudligini tekshirib, qayta urinib ko‘ring.",
             "Pickets", MessageBoxButton.OK, MessageBoxImage.Warning);
         return false;
     }
@@ -175,11 +175,11 @@ public partial class PicketWindow
         await item.RefreshAsync();
         if (item.IsMissing)
         {
-            MessageBox.Show($"This reference is currently unavailable:\n{item.Path}\n\nReconnect its drive or network location and choose Check again. If it moved, use Locate…. The reference is still saved.",
+            MessageBox.Show($"Ushbu havola hozir mavjud emas:\n{item.Path}\n\nDisk yoki tarmoq ulanishini tiklab, «Qayta tekshirish»ni tanlang. Fayl ko‘chirilgan bo‘lsa, «Joyini ko‘rsatish»ni bosing. Havola saqlangan.",
                 "Pickets", MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
         try { Process.Start(new ProcessStartInfo(item.Path) { UseShellExecute = true }); }
-        catch (Exception ex) { MessageBox.Show($"Could not open:\n{item.Path}\n\n{ex.Message}", "Pickets", MessageBoxButton.OK, MessageBoxImage.Warning); }
+        catch (Exception ex) { MessageBox.Show($"Ochib bo‘lmadi:\n{item.Path}\n\n{ex.Message}", "Pickets", MessageBoxButton.OK, MessageBoxImage.Warning); }
     }
 }

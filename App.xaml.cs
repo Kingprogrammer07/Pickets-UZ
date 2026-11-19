@@ -93,8 +93,8 @@ public partial class App : Application
         if (loadedLayout == null)
         {
             _isRecoveryMode = true; // Never overwrite unreadable layouts with an empty session.
-            MessageBox.Show("Pickets could not read your saved layout or its backup. Your saved files have been left unchanged. Check the diagnostic log before trying again.",
-                "Pickets recovery", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show("Saqlangan tartib yoki zaxira nusxasini o‘qib bo‘lmadi. Fayllaringiz o‘zgarmadi. Qayta urinishdan oldin diagnostika jurnalini tekshiring.",
+                "Pickets: tiklash", MessageBoxButton.OK, MessageBoxImage.Warning);
             Shutdown((int)RecoveryExitCode.LayoutUnavailable);
             return;
         }
@@ -206,7 +206,7 @@ public partial class App : Application
 
         if (welcome.CreateDesktopShortcut && !DesktopShortcut.TryCreate(out var shortcutError))
         {
-            MessageBox.Show($"Pickets could not create the desktop shortcut.\n\n{shortcutError}",
+            MessageBox.Show($"Ish stolida Pickets yorlig‘ini yaratib bo‘lmadi.\n\n{shortcutError}",
                 "Pickets", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
 
@@ -217,8 +217,8 @@ public partial class App : Application
         if (_pickets.Count == 0) LayoutStore.Save(_layout);
         else SaveLayout();
         if (firstRun)
-            _tray?.ShowBalloon("Pickets is ready",
-                "Drag in an icon to begin. Reopen the quick start guide from the tray anytime.");
+            _tray?.ShowBalloon("Pickets tayyor",
+                "Boshlash uchun belgini guruhga sudrang. Qo‘llanmani tizim panelidan istalgan payt ochishingiz mumkin.");
         return true;
     }
 
@@ -232,8 +232,8 @@ public partial class App : Application
             f.ShowIfOnStackPage();
             if (f.IsOnStackPage) f.Activate();
         }
-        _tray?.ShowBalloon("Pickets is already running",
-            "Your pickets are on the desktop. Use the tray icon to hide them or quit.");
+        _tray?.ShowBalloon("Pickets allaqachon ishlayapti",
+            "Guruhlaringiz ish stolida. Ularni yashirish yoki dasturdan chiqish uchun tizim panelidagi belgidan foydalaning.");
     }
 
     /// <summary>After an Explorer restart the old WorkerW is gone, so the pickets are orphaned and
@@ -242,7 +242,7 @@ public partial class App : Application
     private void ReattachPicketsToDesktop()
     {
         ClearUndoHistory();
-        Logger.Log("Explorer restarted -- respawning pickets onto the new WorkerW.");
+        Logger.Log("Explorer qayta ishga tushirildi -- yangi WorkerW-ga piketlarni qayta tikladi.");
         var states = _pickets.Select(f => f.ToState()).ToList();
         foreach (var f in _pickets.ToList())
             f.CloseForLayoutChange();
@@ -373,14 +373,14 @@ public partial class App : Application
         if (!SaveLayout())
         {
             ClampPicketsToWorkArea();
-            _tray?.ShowBalloon("Display layout kept", "Pickets could not save your layout. Your current pickets remain available; check the diagnostic log.");
+            _tray?.ShowBalloon("Guruhlar ochiq qoldi", "Tartibni saqlab bo‘lmadi. Guruhlaringiz ochiq qoldi; diagnostika jurnalini tekshiring.");
             return;
         }
         var incoming = LayoutStore.GetOrSeedProfile(_layout, newKey);
         if (!IconCaptureRecovery.TryRestoreInactive(_layout, _activeProfile, incoming, RestoreCapturedIcon))
         {
             ClampPicketsToWorkArea();
-            _tray?.ShowBalloon("Desktop icons need recovery", "Windows could not restore every icon. Your current pickets were kept; choose Quit Pickets to retry recovery.");
+            _tray?.ShowBalloon("Ish stoli belgilarini tiklash kerak", "Windows ayrim belgilarni tiklay olmadi. Guruhlaringiz saqlandi; qayta urinish uchun «Pickets’dan chiqish»ni tanlang.");
             return;
         }
 
@@ -423,7 +423,7 @@ public partial class App : Application
 
         var state = new PicketState
         {
-            Title = captured.Count > 0 ? "Lassoed" : "New picket",
+            Title = captured.Count > 0 ? "Tanlanganlar" : "Yangi guruh",
             X = rect.left,
             Y = rect.top,
             Width = Math.Max(240, width),
@@ -499,8 +499,8 @@ public partial class App : Application
         foreach (var picket in _pickets) picket.SettleStack();
         PicketsHidden = true;
         foreach (var picket in _pickets) picket.Hide();
-        if (explain) _tray?.ShowBalloon("Pickets is hidden",
-            "Pickets is still running. Use the tray or focus shortcut to return; choose Quit to restore desktop icons.");
+        if (explain) _tray?.ShowBalloon("Pickets yashirildi",
+            "Pickets ishlashda davom etmoqda. Qaytish uchun tizim paneli yoki faollashtirish tugmalaridan foydalaning. Belgilarni tiklash uchun dasturdan chiqing.");
     }
 
     internal void ShowPickets()
@@ -570,7 +570,7 @@ public partial class App : Application
         attachAfter?.SettleStack();
         var state = new PicketState
         {
-            Title = "New picket",
+            Title = "Yangi guruh",
             X = x, Y = y,
             Width = 320, Height = PicketContentSizing.EmptyHeight, AutoSizeRows = true,
             ColorKey = PicketColors.Get(_layout.DefaultColorKey).Key,
@@ -580,7 +580,7 @@ public partial class App : Application
         else picket.JoinTouchingGroups();
         picket.FocusForKeyboard();
         MarkDirty();
-        RecordUndo("Picket added", () =>
+        RecordUndo("Guruh qo‘shildi", () =>
         {
             var added = _pickets.FirstOrDefault(p => p.PicketId == state.Id);
             if (added == null) return true;
@@ -609,7 +609,7 @@ public partial class App : Application
         }
         MarkDirty();
         state.Items.Clear(); // Restore the original item instances, including earlier undo references.
-        RecordUndo($"“{state.Title}” picket removed", () =>
+        RecordUndo($"«{state.Title}» guruhi olib tashlandi", () =>
         {
             var restored = _pickets.FirstOrDefault(p => p.PicketId == state.Id) ?? SpawnPicket(state);
             var complete = restored.RestoreReferences(references);
@@ -678,8 +678,8 @@ public partial class App : Application
     public void QuitAndRestoreIcons()
     {
         var result = MessageBox.Show(
-            "Restore all hidden desktop icons and quit Pickets?\n\n" +
-            "Your layout stays saved and Pickets will collect the icons again next launch.",
+            "Yashirilgan ish stoli belgilarini tiklab, Pickets’dan chiqilsinmi?\n\n" +
+            "Tartibingiz saqlanadi. Keyingi ishga tushishda Pickets belgilarni yana guruhlarga oladi.",
             "Pickets", MessageBoxButton.OKCancel, MessageBoxImage.Question);
         if (result != MessageBoxResult.OK) return;
 
@@ -690,7 +690,7 @@ public partial class App : Application
         if (!SaveLayout())
         {
             _rehideTimer?.Start();
-            MessageBox.Show("Pickets could not save your layout. It will stay open so captured icons remain recoverable. Check the diagnostic log and try again.",
+            MessageBox.Show("Tartibni saqlab bo‘lmadi. Belgilarni tiklash mumkin bo‘lishi uchun Pickets ochiq qoladi. Diagnostika jurnalini tekshirib, yana urinib ko‘ring.",
                 "Pickets", MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
@@ -700,8 +700,8 @@ public partial class App : Application
         if (restored.Count != captured.Count)
         {
             var quitAnyway = MessageBox.Show(
-                $"Windows restored {restored.Count} of {captured.Count} captured icon(s).\n\n" +
-                "Some icons remain hidden. Quit anyway? Choose No to keep Pickets running and retry.",
+                $"Windows {captured.Count} ta belgidan {restored.Count} tasini tikladi.\n\n" +
+                "Ba’zi belgilar yashirin qoldi. Shunga qaramay chiqilsinmi? Qayta urinish uchun «Yo‘q»ni tanlang.",
                 "Pickets", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (quitAnyway != MessageBoxResult.Yes)
             {
@@ -723,9 +723,8 @@ public partial class App : Application
         if (confirm)
         {
             var result = MessageBox.Show(
-                "Release every captured icon back to the desktop and quit?\n\n" +
-                "Picket shortcuts will remain, but future launches will no longer hide those " +
-                "desktop icons.",
+                "Guruhlarga olingan barcha belgilarni ish stoliga qaytarib chiqilsinmi?\n\n" +
+                "Guruhlardagi havolalar saqlanadi, ammo keyingi ishga tushishda ushbu belgilar yashirilmaydi.",
                 "Pickets", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
             if (result != MessageBoxResult.OK) return;
         }
@@ -742,10 +741,10 @@ public partial class App : Application
 
         if (confirm)
             MessageBox.Show(
-                $"Released {restored.Count} of {captured.Count} captured desktop icon(s)." +
+                $"Ish stolidagi {captured.Count} ta belgidan {restored.Count} tasi qaytarildi." +
                 (restored.Count == captured.Count
                     ? ""
-                    : "\n\nIcons Windows could not restore remain captured so recovery can retry later."),
+                    : "\n\nWindows tiklay olmagan belgilar keyinroq qayta urinish uchun guruhda qoldi."),
                 "Pickets", MessageBoxButton.OK,
                 restored.Count == captured.Count ? MessageBoxImage.Information : MessageBoxImage.Warning);
         Shutdown();
@@ -757,8 +756,8 @@ public partial class App : Application
         var recoveredLayout = LayoutStore.LoadForRecovery();
         if (recoveredLayout == null)
         {
-            if (!silent) MessageBox.Show("Pickets could not read your saved layouts. Recovery has stopped to protect your desktop icons. Check the diagnostic log and try again.",
-                "Pickets recovery", MessageBoxButton.OK, MessageBoxImage.Warning);
+            if (!silent) MessageBox.Show("Saqlangan tartiblarni o‘qib bo‘lmadi. Ish stoli belgilarini saqlash uchun tiklash to‘xtatildi. Diagnostika jurnalini tekshirib, yana urinib ko‘ring.",
+                "Pickets: tiklash", MessageBoxButton.OK, MessageBoxImage.Warning);
             Shutdown((int)RecoveryExitCode.LayoutUnavailable);
             return;
         }
@@ -773,12 +772,12 @@ public partial class App : Application
         if (!silent)
         {
             MessageBox.Show(
-                $"Emergency recovery restored {restored.Count} of {captured.Count} captured desktop icon(s).\n\n" +
-                (!saved ? "The restored state could not be saved. Check folder permissions and retry recovery."
+                $"Favqulodda tiklash {captured.Count} ta belgidan {restored.Count} tasini qaytardi.\n\n" +
+                (!saved ? "Tiklangan holatni saqlab bo‘lmadi. Papka ruxsatlarini tekshiring va tiklashni takrorlang."
                     : restored.Count == captured.Count
-                    ? "Pickets will no longer hide those icons on future launches."
-                    : "Icons Windows could not restore remain captured so you can retry recovery later."),
-                "Pickets recovery", MessageBoxButton.OK,
+                    ? "Keyingi ishga tushishda Pickets bu belgilarni yashirmaydi."
+                    : "Windows tiklay olmagan belgilarni keyinroq qayta tiklashingiz mumkin."),
+                "Pickets: tiklash", MessageBoxButton.OK,
                 saved && restored.Count == captured.Count ? MessageBoxImage.Information : MessageBoxImage.Warning);
         }
         Shutdown((int)RecoveryOutcome.From(restored.Count, captured.Count, saved));

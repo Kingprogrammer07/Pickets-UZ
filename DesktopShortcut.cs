@@ -24,12 +24,12 @@ internal static class DesktopShortcut
         {
             var exe = Environment.ProcessPath;
             if (string.IsNullOrWhiteSpace(exe))
-                throw new InvalidOperationException("Pickets could not determine its executable path.");
+                throw new InvalidOperationException("Pickets dastur fayli joylashuvini aniqlay olmadi.");
 
             var shellType = Type.GetTypeFromProgID("WScript.Shell") ??
-                throw new InvalidOperationException("Windows Script Host is unavailable.");
+                throw new InvalidOperationException("Windows Script Host mavjud emas.");
             shell = Activator.CreateInstance(shellType) ??
-                throw new InvalidOperationException("Windows could not create the shortcut service.");
+                throw new InvalidOperationException("Windows yorliq yaratish xizmatini ishga tushira olmadi.");
 
             dynamic shellObject = shell;
             shortcut = shellObject.CreateShortcut(Path);
@@ -37,7 +37,7 @@ internal static class DesktopShortcut
             shortcutObject.TargetPath = exe;
             shortcutObject.WorkingDirectory = System.IO.Path.GetDirectoryName(exe) ?? "";
             shortcutObject.IconLocation = $"{exe},0";
-            shortcutObject.Description = "Pickets desktop organizer";
+            shortcutObject.Description = "Pickets ish stoli tartiblagichi";
             shortcutObject.Save();
             error = "";
             return true;

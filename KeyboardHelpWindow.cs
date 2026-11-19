@@ -8,48 +8,48 @@ public sealed class KeyboardHelpWindow : AccessibleDialogWindow
 {
     public KeyboardHelpWindow(string shortcut)
     {
-        Title = "Pickets keyboard help";
+        Title = "Pickets: klaviatura bo‘yicha yordam";
         Width = 560;
         Height = 620;
         ResizeMode = ResizeMode.CanResize;
         WindowStartupLocation = WindowStartupLocation.CenterScreen;
         var root = new DockPanel { Margin = new Thickness(20) };
-        var close = new Button { Content = "Close", IsCancel = true, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0,12,0,0) };
+        var close = new Button { Content = "Yopish", IsCancel = true, HorizontalAlignment = HorizontalAlignment.Right, Margin = new Thickness(0,12,0,0) };
         close.Click += (_, _) => Close();
         DockPanel.SetDock(close, Dock.Bottom);
         root.Children.Add(close);
         var content = new StackPanel();
-        content.Children.Add(new TextBlock { Text = "Keyboard help", FontSize = 24, FontWeight = FontWeights.SemiBold, TextWrapping = TextWrapping.Wrap });
-        content.Children.Add(new TextBlock { Text = shortcut == "None" ? "Global shortcut is off. Use Focus Pickets from the tray." :
-            "Focus Pickets: " + shortcut + ". Press again while focused to hide.",
+        content.Children.Add(new TextBlock { Text = "Klaviatura bo‘yicha yordam", FontSize = 24, FontWeight = FontWeights.SemiBold, TextWrapping = TextWrapping.Wrap });
+        content.Children.Add(new TextBlock { Text = shortcut == "None" ? "Umumiy tugmalar o‘chirilgan. Tizim panelidagi «Pickets’ni faollashtirish» bandidan foydalaning." :
+            "Pickets’ni faollashtirish: " + shortcut + ". Faol holatda yana bossangiz yashiriladi.",
             TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0,8,0,16) });
         var entries = new (string Key, string Action)[]
         {
-            ("Ctrl+Tab / Ctrl+Shift+Tab", "Next / previous picket, including other stack pages"),
-            ("Tab / Shift+Tab", "Move between controls"),
-            ("Enter / Space on a title", "Expand / collapse the picket"),
-            ("Down on a title", "Open and enter its references"),
-            ("Arrow keys", "Navigate references"),
-            ("Space / Ctrl+Space", "Select / toggle selection"),
-            ("Shift+Arrow", "Extend selection"),
-            ("Ctrl+A", "Select all references in this picket"),
-            ("Ctrl+Z", "Undo the last supported organizational action; also available from the title or tray menu"),
-            ("Ctrl+F", "Find a reference across all pickets, including collapsed sections"),
-            ("Drag from empty space", "Rectangle select; Shift adds, Ctrl toggles, Escape cancels. Drag near an edge to scroll."),
-            ("Drag a selected item", "Move the entire selection to another picket; the preview shows how many items are moving"),
-            ("Enter on a reference", "Open selected references"),
-            ("Delete", "Remove selected references; never deletes the files"),
-            ("Shift+F10", "Context menu, including Move reference to"),
-            ("F2", "Rename this picket"),
-            ("Escape", "Collapse the picket and focus its title"),
-            ("Ctrl+O / Ctrl+Shift+O", "Add files / folders"),
-            ("Ctrl+N", "Create a new picket"),
-            ("Ctrl+Shift+Up / Down", "Reorder the focused reference, or picket when its title is focused"),
-            ("Alt+Arrow", "Move the entire stack"),
-            ("Ctrl+Alt+Arrow", "Resize the entire stack"),
-            ("Ctrl+PageUp / PageDown", "Previous / next page of a large stack"),
-            ("Alt+F4", "Hide Pickets safely; use the tray or focus shortcut to return"),
-            ("F1", "Open this help")
+            ("Ctrl+Tab / Ctrl+Shift+Tab", "Keyingi yoki oldingi guruhga, shu jumladan to‘plamning boshqa sahifalariga o‘tish"),
+            ("Tab / Shift+Tab", "Boshqaruv elementlari orasida o‘tish"),
+            ("Sarlavhada Enter yoki Space", "Guruhni ochish yoki yig‘ish"),
+            ("Sarlavhada pastga o‘q", "Guruhni ochib, ichidagi havolalarga o‘tish"),
+            ("O‘q tugmalari", "Havolalar orasida yurish"),
+            ("Space / Ctrl+Space", "Tanlash yoki tanlovni almashtirish"),
+            ("Shift+O‘q", "Tanlovni kengaytirish"),
+            ("Ctrl+A", "Ushbu guruhdagi barcha havolalarni tanlash"),
+            ("Ctrl+Z", "Oxirgi amalni bekor qilish; sarlavha va tizim paneli menyusida ham bor"),
+            ("Ctrl+F", "Yig‘ilgan guruhlarni ham qo‘shib, barcha havolalarni qidirish"),
+            ("Bo‘sh joydan sudrash", "To‘rtburchak bilan tanlash. Shift — qo‘shish, Ctrl — tanlovni almashtirish, Escape — bekor qilish. Aylantirish uchun chetga yaqin sudrang."),
+            ("Tanlangan elementni sudrash", "Tanlanganlarning barchasini boshqa guruhga ko‘chirish; ko‘chadigan elementlar soni ko‘rsatiladi"),
+            ("Havolada Enter", "Tanlangan havolalarni ochish"),
+            ("Delete", "Tanlangan havolalarni olib tashlash; asl fayllar o‘chirilmaydi"),
+            ("Shift+F10", "«Havolani ko‘chirish» bandi bor kontekst menyusi"),
+            ("F2", "Ushbu guruh nomini o‘zgartirish"),
+            ("Escape", "Guruhni yig‘ib, sarlavhasini faollashtirish"),
+            ("Ctrl+O / Ctrl+Shift+O", "Fayllar yoki papkalarni qo‘shish"),
+            ("Ctrl+N", "Yangi guruh yaratish"),
+            ("Ctrl+Shift+Up / Down", "Faol havolaning yoki sarlavhasi faol bo‘lsa, guruhning o‘rnini o‘zgartirish"),
+            ("Alt+Arrow", "Butun to‘plamni ko‘chirish"),
+            ("Ctrl+Alt+O‘q", "Butun to‘plam o‘lchamini o‘zgartirish"),
+            ("Ctrl+PageUp / PageDown", "Katta to‘plamning oldingi yoki keyingi sahifasiga o‘tish"),
+            ("Alt+F4", "Pickets’ni yashirish; qaytish uchun tizim paneli yoki faollashtirish tugmalaridan foydalaning"),
+            ("F1", "Ushbu yordamni ochish")
         };
         foreach (var (key, action) in entries)
         {
@@ -57,7 +57,7 @@ public sealed class KeyboardHelpWindow : AccessibleDialogWindow
             content.Children.Add(new TextBlock { Text = action, TextWrapping = TextWrapping.Wrap });
         }
         var scroll = new ScrollViewer { Content = content, VerticalScrollBarVisibility = ScrollBarVisibility.Auto, HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled };
-        System.Windows.Automation.AutomationProperties.SetName(scroll, "Keyboard shortcuts");
+        System.Windows.Automation.AutomationProperties.SetName(scroll, "Klaviatura tugmalari");
         root.Children.Add(scroll);
         Content = root;
         PreviewKeyDown += (_, e) => { if (e.Key == Key.Escape) { Close(); e.Handled = true; } };

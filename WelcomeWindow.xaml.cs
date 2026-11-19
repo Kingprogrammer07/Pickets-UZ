@@ -27,7 +27,7 @@ public partial class WelcomeWindow : AccessibleDialogWindow
         {
             CreateShortcutCheck.Content = new TextBlock
             {
-                Text = "Pickets desktop shortcut is ready", TextWrapping = TextWrapping.Wrap,
+                Text = "Pickets ish stoli yorlig‘i tayyor", TextWrapping = TextWrapping.Wrap,
             };
             CreateShortcutCheck.IsEnabled = false;
         }
@@ -42,20 +42,20 @@ public partial class WelcomeWindow : AccessibleDialogWindow
     {
         var readiness = _readReadiness();
         GetStartedButton.IsEnabled = readiness.IsReady;
-        GetStartedButton.ToolTip = readiness.IsReady ? "Your desktop is ready." : "Complete the desktop settings above to continue.";
-        SetStatus(AutoArrangeStatus, AutoArrangeIndicator, "Auto arrange", readiness.AutoArrange);
-        SetStatus(SnapToGridStatus, SnapToGridIndicator, "Align to grid", readiness.AlignToGrid);
-        ReadinessHint.Text = readiness.IsReady ? "Your desktop is ready."
-            : readiness.IsUnknown ? "Unable to check Windows Explorer. Wait for your desktop to finish loading, then choose Check again."
-            : "Turn both options off in Desktop → View before starting. Choose Check again when you are done.";
+        GetStartedButton.ToolTip = readiness.IsReady ? "Ish stolingiz tayyor." : "Davom etish uchun yuqoridagi ish stoli sozlamalarini bajaring.";
+        SetStatus(AutoArrangeStatus, AutoArrangeIndicator, "Belgilarni avtomatik tartiblash", readiness.AutoArrange);
+        SetStatus(SnapToGridStatus, SnapToGridIndicator, "Belgilarni to‘rga tekislash", readiness.AlignToGrid);
+        ReadinessHint.Text = readiness.IsReady ? "Ish stolingiz tayyor."
+            : readiness.IsUnknown ? "Windows Explorer’ni tekshirib bo‘lmadi. Ish stoli yuklanishini kuting va «Qayta tekshirish»ni bosing."
+            : "Boshlashdan oldin Ish stoli → Ko‘rinish menyusidagi ikkala sozlamani o‘chiring. So‘ng «Qayta tekshirish»ni bosing.";
         return readiness;
     }
 
     private static void SetStatus(TextBlock text, Ellipse indicator,
                                   string label, bool? enabled)
     {
-        text.Text = enabled == null ? $"{label}: unable to check"
-            : enabled == true ? $"{label}: turn off" : $"{label}: ready";
+        text.Text = enabled == null ? $"{label}: tekshirib bo‘lmadi"
+            : enabled == true ? $"{label}: o‘chiring" : $"{label}: tayyor";
         indicator.Fill = enabled == false ? ReadyBrush : ActionBrush;
     }
 

@@ -1,103 +1,43 @@
-# Pickets
+# Pickets — o‘zbekcha versiya
 
-[![Build](https://github.com/Creeptones/Pickets/actions/workflows/build.yml/badge.svg)](https://github.com/Creeptones/Pickets/actions/workflows/build.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Windows 10/11](https://img.shields.io/badge/platform-Windows%2010%20%7C%2011-0078D4.svg)](#requirements)
+Windows 10/11 ish stolidagi fayl, papka va dastur yorliqlarini ko‘chiriladigan guruhlarga yig‘uvchi ochiq kodli dastur. Bu repozitoriy [Creeptones/Pickets](https://github.com/Creeptones/Pickets) dasturining **norasmiy o‘zbekcha (lotin yozuvi) tarjimasi**. Asl loyiha va ushbu tarjima MIT litsenziyasi asosida tarqatiladi; [LICENSE](LICENSE) faylini ko‘ring.
 
-> [!IMPORTANT]
-> **Pickets changes how your desktop looks, not where your files live.** Nothing is moved,
-> copied, or renamed. Your files stay in their original folders, and File Explorer shows them
-> exactly as before. When you drop a desktop icon into a picket, Pickets just hides that icon
-> from the desktop and shows it inside the picket. Quit Pickets and every icon goes back to
-> the exact spot it came from.
+![Pickets o‘zbekcha boshlash oynasi](docs/images/uz-welcome.png)
 
-**A tidy desktop, with your files right where you left them.**
+## Yuklab olish
 
-Pickets organizes files, folders, and shortcuts into movable desktop groups. Collapse them
-into a compact stack, find what you need, and expand a section with one click.
-Free and open source. No accounts, ads, or telemetry.
+[Releases](https://github.com/Kingprogrammer07/Pickets-UZ/releases) sahifasidan `Pickets-UZ.exe` faylini yuklab oling. Uni doimiy papkaga, masalan `C:\Programs\Pickets-UZ` ichiga qo‘ying va ishga tushiring. Bu ko‘chma versiya: o‘rnatgich va alohida .NET o‘rnatish talab qilinmaydi.
 
-![Demo: opening Pickets groups, dragging desktop icons into Programs and Personal, then collapsing the groups into a compact stack.](docs/images/pickets-demo.gif)
-
-[View a still screenshot](docs/images/pickets-desktop.png)
-
-[Downloads](https://github.com/Creeptones/Pickets/releases) ·
-[User guide](docs/USER_GUIDE.md) ·
-[Report a bug](https://github.com/Creeptones/Pickets/issues)
-
-## Get started
-
-1. Get **PicketsSetup.exe** from [Releases](https://github.com/Creeptones/Pickets/releases)
-   for a guided install, or **Pickets.exe** for portable use. Neither needs admin access or a
-   separate .NET installation.
-2. Follow the first-run guide. In **Desktop → right-click → View**, turn off
-   **Auto arrange icons** and **Align icons to grid**.
-3. Drag desktop icons into a picket, or open its **⋯ → Add…** menu to add files and folders.
-
-Downloads are currently unsigned. For SmartScreen and checksum guidance, see
-[Verifying a download](docs/USER_GUIDE.md#verifying-a-download).
-[Update and uninstall instructions](docs/USER_GUIDE.md#updating) are in the guide too.
-
-## What you can do
-
-- **Keep groups compact:** snapping, connected stacks, optional one-section-at-a-time mode,
-  and automatic height up to two icon rows.
-- **Organize in batches:** rectangle selection, bulk actions, and dragging several items together.
-- **Find and undo:** search the current layout with **Ctrl+F**; undo supported organizing actions
-  with **Ctrl+Z** (up to 30 actions per session).
-- **Make it yours:** ten color themes, subtle gradients, transparency, optional blur, and large icons.
-- **Use your setup:** layouts for different monitor arrangements, keyboard controls,
-  and Windows high-contrast support.
-
-Pickets stores references to individual files and folders. Adding a folder creates a reference
-to it; it does not show a live view of that folder's contents.
-
-## Everyday controls
-
-| To… | Do this |
-| --- | --- |
-| Open an item | Double-click it |
-| Expand or collapse a picket | Click its title, or press **Space** with the title focused |
-| Move a connected stack | Drag a title bar |
-| Select several items | Drag a rectangle from empty space inside a picket |
-| Remove selected references | Press **Delete** — original files stay untouched |
-| Find a reference / undo an action | **Ctrl+F** / **Ctrl+Z** while Pickets is focused |
-| Show or hide Pickets | Use the tray icon or double-click empty desktop space |
-| Focus Pickets | **Ctrl+Alt+D** by default |
-
-Press **F1** for keyboard help. See the [user guide](docs/USER_GUIDE.md#using-pickets)
-for stacking, resizing, selection modifiers, and all shortcuts.
-
-## Your files and recovery
-
-Pickets never moves or deletes your original files. Dragging a desktop icon in hides its desktop
-presentation; removing it or choosing **Quit Pickets** restores it. Adding through **Add…** leaves
-any desktop icon visible. Layouts and logs stay in `%APPDATA%\Pickets`.
-
-If Pickets cannot start and captured icons remain hidden, run this from its executable folder:
+Windows SmartScreen noma’lum nashriyot haqida ogohlantirishi mumkin, chunki fayl raqamli imzolanmagan. Yuklab olingan faylning SHA-256 summasini release’dagi `SHA256SUMS.txt` bilan solishtiring:
 
 ```powershell
-.\Pickets.exe --restore-icons
+Get-FileHash .\Pickets-UZ.exe -Algorithm SHA256
 ```
 
-This permanently releases captured icons across saved layouts.
-[Recovery and local data](docs/USER_GUIDE.md#local-data-and-recovery) ·
-[Troubleshooting](docs/USER_GUIDE.md#troubleshooting) ·
-[Privacy details](docs/USER_GUIDE.md#privacy-and-security)
+## Boshlash
 
-## Requirements
+1. Ish stolida o‘ng tugmani bosing va **Ko‘rinish (View)** menyusida **Belgilarni avtomatik tartiblash (Auto arrange icons)** hamda **Belgilarni to‘rga tekislash (Align icons to grid)** ni o‘chiring. Bu Windows’ning o‘z menyusi, nomi tizim tiliga bog‘liq.
+2. Pickets’ning boshlash oynasida **Qayta tekshirish** ni bosing, so‘ng **Pickets’dan foydalanishni boshlash** ni tanlang.
+3. Ish stolidagi belgini guruh ichiga sudrang. Asl fayl joyidan ko‘chmaydi; faqat ish stolidagi belgisi guruhda ko‘rsatiladi.
+4. Guruh sarlavhasini bosing — yig‘iladi yoki ochiladi. Sarlavhani sudrang — guruh ko‘chadi. `⋯` menyusidan fayl va papka qo‘shishingiz mumkin.
 
-Windows 10 version 1809 or newer, or Windows 11; **x64** downloads.
-The two desktop arrangement options above must be off.
-Building from source requires Windows and the **.NET 10 SDK**.
+![O‘zbekcha guruh oynasi](docs/images/uz-picket.png)
 
-## Contribute
+**Belgilarni qaytarish:** tizim panelidagi Pickets belgisini o‘ng tugma bilan bosing va **Pickets’dan chiqish…** ni tanlang. Dastur ish stolidan olgan belgilar avvalgi joyiga qaytadi. `Alt+F4` esa dasturni faqat yashiradi.
 
-[Bug reports and focused pull requests](https://github.com/Creeptones/Pickets/issues) are welcome.
-Include steps to reproduce and use **About Pickets → Copy diagnostics** for a redacted summary.
-Review any logs or screenshots for private paths before sharing.
+Qo‘shimcha amallar va tugmalar uchun [o‘zbekcha qo‘llanma](docs/UZ_GUIDE.md) ni ko‘ring. [Asl inglizcha README](README.en.md) ham saqlangan.
 
-[Build instructions](docs/BUILDING.md) · [Changelog](CHANGELOG.md) ·
-[Release checklist](docs/RELEASE_CHECKLIST.md) · [Security policy](SECURITY.md)
+## Koddan yig‘ish
 
-[MIT License](LICENSE).
+.NET 10 SDK kerak. Windows’da repozitoriy ichida:
+
+```powershell
+dotnet test Pickets.Tests/Pickets.Tests.csproj -c Release
+dotnet publish Pickets.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+```
+
+Natija `bin/Release/net10.0-windows/win-x64/publish/Pickets.exe` ichida bo‘ladi.
+
+## Kelib chiqishi
+
+Asl dastur: [Creeptones/Pickets](https://github.com/Creeptones/Pickets), v1.0.2. O‘zbekcha matnlar, ularga mos testlar va qo‘llanma ushbu repozitoriyda qo‘shilgan. Mualliflik huquqi va MIT litsenziyasi saqlangan. Dastur Stardock bilan aloqador emas.

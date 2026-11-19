@@ -32,9 +32,9 @@ public partial class App
         if (shortcut.VirtualKey == 0) return;
         _quickHide = new GlobalHotKey(shortcut.Modifiers | 0x4000, shortcut.VirtualKey, FocusOrHidePickets);
         if (!_quickHide.Registered)
-            MessageBox.Show("Pickets could not register " + shortcut.Text +
-                ". Another app may use it. Use Focus Pickets in the tray, then choose Change focus shortcut.",
-                "Pickets shortcut unavailable", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show(shortcut.Text + " tugmalarini ro‘yxatdan o‘tkazib bo‘lmadi. " +
+                "Ulardan boshqa dastur foydalanayotgan bo‘lishi mumkin. Tizim panelidan Pickets’ni faollashtirib, tugmalarni o‘zgartiring.",
+                "Pickets tugmalari ishlamayapti", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
     private void FocusOrHidePickets()
@@ -60,12 +60,12 @@ public partial class App
 
     internal void ConfigureFocusShortcut(Window? owner)
     {
-        var input = InputDialog.Show(owner, "Focus shortcut",
-            "Enter a shortcut with Ctrl or Alt (for example Ctrl+Alt+D), or None:", _layout.FocusShortcut);
+        var input = InputDialog.Show(owner, "Faollashtirish tugmalari",
+            "Ctrl yoki Alt bilan tugmalar birikmasini kiriting (masalan, Ctrl+Alt+D). O‘chirish uchun None yozing:", _layout.FocusShortcut);
         if (input == null) return;
         if (!FocusShortcut.TryParse(input, out var shortcut))
         {
-            MessageBox.Show("Use a letter or function key with Ctrl or Alt. Windows-key and navigation shortcuts are not supported.",
+            MessageBox.Show("Ctrl yoki Alt bilan harf yoki F tugmasini tanlang. Windows tugmasi va yo‘nalish tugmalari qo‘llanmaydi.",
                 "Pickets", MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
@@ -77,7 +77,7 @@ public partial class App
             if (!replacement.Registered)
             {
                 replacement.Dispose();
-                MessageBox.Show("That shortcut is unavailable. Your previous setting has been kept.", "Pickets");
+                MessageBox.Show("Bu tugmalar birikmasi ishlamayapti. Oldingi sozlama saqlandi.", "Pickets");
                 return;
             }
         }

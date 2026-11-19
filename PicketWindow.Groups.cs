@@ -70,11 +70,11 @@ public partial class PicketWindow
         PreviousPageButton.Visibility = NextPageButton.Visibility = page.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
         PreviousPageButton.IsEnabled = page.Index > 0;
         NextPageButton.IsEnabled = page.Index + 1 < page.Count;
-        var position = $"Stack page {page.Index + 1} of {page.Count}";
-        PreviousPageButton.ToolTip = position + " — previous page (Ctrl+PageUp)";
-        NextPageButton.ToolTip = position + " — next page (Ctrl+PageDown)";
+        var position = $"To‘plamning {page.Index + 1}/{page.Count}-sahifasi";
+        PreviousPageButton.ToolTip = position + " — oldingi sahifa (Ctrl+PageUp)";
+        NextPageButton.ToolTip = position + " — keyingi sahifa (Ctrl+PageDown)";
         System.Windows.Automation.AutomationProperties.SetHelpText(TitleToggle,
-            "Expand or collapse this picket. Drag to move its stack. " + (page.Count > 1 ? position : ""));
+            "Guruhni ochish yoki yig‘ish. To‘plamni surish uchun sudrang. " + (page.Count > 1 ? position : ""));
         if (!onPage && IsVisible) Hide();
         else if (onPage && !wasOnPage && IsLoaded && Application.Current is App { PicketsHidden: false }) Show();
     }
@@ -286,7 +286,7 @@ public partial class PicketWindow
             group[i]._rollTargetCollapsed = states[i];
             group[i]._rollAnchor = anchor;
             group[i].TitleToggle.IsExpanded = !states[i];
-            group[i].TitleToggle.ToolTip = states[i] ? "Expand picket; drag to move stack" : "Collapse picket; drag to move stack";
+            group[i].TitleToggle.ToolTip = states[i] ? "Guruhni ochish; to‘plamni surish uchun sudrang" : "Guruhni yig‘ish; to‘plamni surish uchun sudrang";
             if (!states[i]) group[i].BodyScroll.Visibility = Visibility.Visible;
         }
         var finished = false;
@@ -346,7 +346,7 @@ public partial class PicketWindow
         BodyScroll.Visibility = _isCollapsed ? Visibility.Collapsed : Visibility.Visible;
         TitleToggle.IsExpanded = !_isCollapsed;
         ChevronRotation.Angle = _isCollapsed ? 0 : 90;
-        TitleToggle.ToolTip = _isCollapsed ? "Expand picket; drag to move stack" : "Collapse picket; drag to move stack";
+        TitleToggle.ToolTip = _isCollapsed ? "Guruhni ochish; to‘plamni surish uchun sudrang" : "Guruhni yig‘ish; to‘plamni surish uchun sudrang";
     }
 
     internal void SetExpanded(bool expanded)
@@ -401,7 +401,7 @@ public partial class PicketWindow
         group[0].NormalizeConnectedGroup();
         RevealOnStackPage();
         if (Application.Current is App app)
-            app.RecordUndo("Picket reordered", () => RestoreGroupOrder(previousOrder, anchor));
+            app.RecordUndo("Guruhning o‘rni o‘zgartirildi", () => RestoreGroupOrder(previousOrder, anchor));
     }
 
     internal static bool RestoreGroupOrder(string[] ids, Point anchor)

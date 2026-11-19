@@ -45,16 +45,16 @@ public class PicketItem : INotifyPropertyChanged
     public ReferenceStatus Status => _status;
     public string StatusText => _status switch
     {
-        ReferenceStatus.Checking => "Checking…",
-        ReferenceStatus.Missing => "Not found",
-        ReferenceStatus.Unavailable => "Unavailable",
+        ReferenceStatus.Checking => "Tekshirilmoqda…",
+        ReferenceStatus.Missing => "Topilmadi",
+        ReferenceStatus.Unavailable => "Mavjud emas",
         _ => "",
     };
     public string ReferenceHelp => _status switch
     {
-        ReferenceStatus.Checking => Path + "\nChecking availability in the background.",
-        ReferenceStatus.Missing => Path + "\nThe reference is saved. Use Check again or Locate… if it moved.",
-        ReferenceStatus.Unavailable => Path + "\nThe reference is saved. Reconnect its drive or share, then choose Check again.",
+        ReferenceStatus.Checking => Path + "\nFayl mavjudligi tekshirilmoqda.",
+        ReferenceStatus.Missing => Path + "\nHavola saqlangan. Fayl ko‘chirilgan bo‘lsa, «Qayta tekshirish» yoki «Joyini ko‘rsatish»ni tanlang.",
+        ReferenceStatus.Unavailable => Path + "\nHavola saqlangan. Disk yoki tarmoq ulanishini tiklang va «Qayta tekshirish»ni tanlang.",
         _ => Path,
     };
     public string AccessibleName => Kind == ItemKind.Label ? LabelText

@@ -19,7 +19,7 @@ public partial class App
         if (_tray == null && !_pickets.Any(p => p.IsVisible)) return;
         _undoNotice?.Close();
         var panel = new DockPanel { Margin = new Thickness(12) };
-        var undo = new Button { Content = "Undo", Padding = new Thickness(10, 5, 10, 5), ToolTip = "Undo (Ctrl+Z)", Margin = new Thickness(12, 0, 0, 0) };
+        var undo = new Button { Content = "Bekor qilish", Padding = new Thickness(10, 5, 10, 5), ToolTip = "Bekor qilish (Ctrl+Z)", Margin = new Thickness(12, 0, 0, 0) };
         DockPanel.SetDock(undo, Dock.Right);
         panel.Children.Add(undo);
         panel.Children.Add(new TextBlock { Text = description, ToolTip = description, TextWrapping = TextWrapping.Wrap,
@@ -27,7 +27,7 @@ public partial class App
         var work = SystemParameters.WorkArea;
         var notice = new Window
         {
-            Title = "Pickets — Undo", Width = Math.Min(380, work.Width), SizeToContent = SizeToContent.Height,
+            Title = "Pickets — amalni bekor qilish", Width = Math.Min(380, work.Width), SizeToContent = SizeToContent.Height,
             WindowStyle = WindowStyle.None, ResizeMode = ResizeMode.NoResize, ShowActivated = false,
             ShowInTaskbar = false, Topmost = true, Background = SystemColors.WindowBrush, Foreground = SystemColors.WindowTextBrush,
             Content = new Border { BorderBrush = SystemColors.WindowTextBrush, BorderThickness = new Thickness(1), Child = panel },
@@ -47,7 +47,7 @@ public partial class App
         if (UndoHistory.Description == null) return;
         if (!UndoHistory.Undo())
         {
-            MessageBox.Show("Pickets could not finish undoing that action. Your references have been kept. Check that Explorer is available, then try Undo again.", "Pickets");
+            MessageBox.Show("Amalni bekor qilib bo‘lmadi. Havolalaringiz saqlandi. Explorer ishlayotganini tekshirib, yana urinib ko‘ring.", "Pickets");
             return;
         }
         _undoNotice?.Close();

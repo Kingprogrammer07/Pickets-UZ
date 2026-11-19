@@ -47,7 +47,7 @@ public partial class PicketWindow
     {
         if (removed.Length == 0 || Application.Current is not App app) return;
         var id = PicketId;
-        app.RecordUndo($"{removed.Length} item{(removed.Length == 1 ? "" : "s")} removed", () =>
+        app.RecordUndo($"{removed.Length} ta element olib tashlandi", () =>
             app.Pickets.FirstOrDefault(p => p.PicketId == id)?.RestoreReferences(removed) == true);
     }
 
@@ -55,7 +55,7 @@ public partial class PicketWindow
     {
         if (added.Length == 0 || Application.Current is not App app) return;
         var id = PicketId;
-        app.RecordUndo($"{added.Length} item{(added.Length == 1 ? "" : "s")} added", () =>
+        app.RecordUndo($"{added.Length} ta element qo‘shildi", () =>
         {
             var picket = app.Pickets.FirstOrDefault(p => p.PicketId == id);
             if (picket == null) return false;
@@ -72,7 +72,7 @@ public partial class PicketWindow
         if (Application.Current is App app)
         {
             var id = PicketId;
-            app.RecordUndo("Reference reordered", () =>
+            app.RecordUndo("Havolaning o‘rni o‘zgartirildi", () =>
             {
                 var picket = app.Pickets.FirstOrDefault(p => p.PicketId == id);
                 if (picket == null || !picket.Items.Contains(item)) return false;

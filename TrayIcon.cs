@@ -36,29 +36,29 @@ public sealed class TrayIcon : IDisposable
     {
         var menu = new ContextMenuStrip();
 
-        menu.Items.Add(new ToolStripMenuItem("Show / hide pickets", null, (_, _) => onToggleVisibility()));
-        menu.Items.Add(new ToolStripMenuItem("Focus Pickets", null, (_, _) => onFocus()));
-        menu.Items.Add(new ToolStripMenuItem("Find reference...", null, (_, _) => onFind()));
-        var undo = new ToolStripMenuItem("Undo", null, (_, _) => onUndo());
+        menu.Items.Add(new ToolStripMenuItem("Guruhlarni ko‘rsatish yoki yashirish", null, (_, _) => onToggleVisibility()));
+        menu.Items.Add(new ToolStripMenuItem("Pickets’ni faollashtirish", null, (_, _) => onFocus()));
+        menu.Items.Add(new ToolStripMenuItem("Havolani topish…", null, (_, _) => onFind()));
+        var undo = new ToolStripMenuItem("Bekor qilish", null, (_, _) => onUndo());
         menu.Items.Add(undo);
-        menu.Items.Add(new ToolStripMenuItem("Change focus shortcut...", null, (_, _) => onShortcutSettings()));
-        menu.Items.Add(new ToolStripMenuItem("Keyboard help...", null, (_, _) => onKeyboardHelp()));
-        menu.Items.Add(new ToolStripMenuItem("New picket", null, (_, _) => onNewPicket()));
-        menu.Items.Add(new ToolStripMenuItem("Quick start guide...", null, (_, _) => onShowWelcome()));
+        menu.Items.Add(new ToolStripMenuItem("Faollashtirish tugmalarini o‘zgartirish…", null, (_, _) => onShortcutSettings()));
+        menu.Items.Add(new ToolStripMenuItem("Klaviatura bo‘yicha yordam…", null, (_, _) => onKeyboardHelp()));
+        menu.Items.Add(new ToolStripMenuItem("Yangi guruh", null, (_, _) => onNewPicket()));
+        menu.Items.Add(new ToolStripMenuItem("Boshlash qo‘llanmasi…", null, (_, _) => onShowWelcome()));
         menu.Items.Add(new ToolStripSeparator());
 
         // "&&" renders as a literal ampersand (a single "&" would become a mnemonic underline).
-        var runAtLogin = new ToolStripMenuItem("Start at sign-in");
+        var runAtLogin = new ToolStripMenuItem("Tizimga kirganda ishga tushirish");
         runAtLogin.Click += (_, _) => setRunAtLogin(!runAtLogin.Checked);
         menu.Items.Add(runAtLogin);
-        menu.Items.Add(new ToolStripMenuItem("About Pickets...", null, (_, _) => onAbout()));
+        menu.Items.Add(new ToolStripMenuItem("Pickets haqida…", null, (_, _) => onAbout()));
 
         menu.Items.Add(new ToolStripSeparator());
-        var advanced = new ToolStripMenuItem("Advanced");
-        advanced.DropDownItems.Add(new ToolStripMenuItem("Release all icons && quit...", null, (_, _) => onReleaseAndQuit()));
-        advanced.DropDownItems.Add(new ToolStripMenuItem("Exit and keep icons hidden", null, (_, _) => onExitHidden()));
+        var advanced = new ToolStripMenuItem("Qo‘shimcha amallar");
+        advanced.DropDownItems.Add(new ToolStripMenuItem("Barcha belgilarni tiklab chiqish…", null, (_, _) => onReleaseAndQuit()));
+        advanced.DropDownItems.Add(new ToolStripMenuItem("Belgilarni yashirin qoldirib chiqish", null, (_, _) => onExitHidden()));
         menu.Items.Add(advanced);
-        menu.Items.Add(new ToolStripMenuItem("Quit Pickets...", null, (_, _) => onQuit()));
+        menu.Items.Add(new ToolStripMenuItem("Pickets’dan chiqish…", null, (_, _) => onQuit()));
 
         // Sync the checkmark to actual registry state every time the menu opens, so a change made
         // from a picket's title menu (or another tool) is always reflected.
@@ -67,7 +67,7 @@ public sealed class TrayIcon : IDisposable
             runAtLogin.Checked = getRunAtLogin();
             var description = getUndoDescription();
             undo.Enabled = description != null;
-            undo.Text = description == null ? "Undo" : "Undo: " + description.Replace("&", "&&", StringComparison.Ordinal);
+            undo.Text = description == null ? "Bekor qilish" : "Bekor qilish: " + description.Replace("&", "&&", StringComparison.Ordinal);
         };
 
         _icon = new NotifyIcon

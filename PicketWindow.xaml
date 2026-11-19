@@ -8,7 +8,7 @@
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         MinWidth="160" MinHeight="32"
-        Title="Picket"
+        Title="Guruh"
         UseLayoutRounding="True"
         AllowDrop="True"
         PreviewDragEnter="Picket_DragOver"
@@ -22,118 +22,118 @@
         <local:PicketLabelWidthConverter x:Key="LabelWidthConverter"/>
         <local:PicketTextHeightConverter x:Key="TextHeightConverter"/>
         <ContextMenu x:Key="ItemContextMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
-            <MenuItem Header="Open" Tag="Open" Click="ItemMenu_Open_Click"/>
-            <MenuItem Header="Check again" Tag="Check" Click="ItemMenu_Check_Click"/>
-            <MenuItem Header="Locate..." Tag="Locate" Click="ItemMenu_Locate_Click"/>
-            <MenuItem Header="Open file location" Tag="Location" Click="ItemMenu_OpenLocation_Click"/>
-            <MenuItem Header="Move reference to" Tag="MoveReferenceTo"/>
-            <MenuItem Header="Large icon" Tag="LargeToggle" IsCheckable="True" Click="ItemMenu_ToggleLarge_Click"/>
+            <MenuItem Header="Ochish" Tag="Open" Click="ItemMenu_Open_Click"/>
+            <MenuItem Header="Qayta tekshirish" Tag="Check" Click="ItemMenu_Check_Click"/>
+            <MenuItem Header="Joyini ko‘rsatish…" Tag="Locate" Click="ItemMenu_Locate_Click"/>
+            <MenuItem Header="Fayl joylashuvini ochish" Tag="Location" Click="ItemMenu_OpenLocation_Click"/>
+            <MenuItem Header="Havolani ko‘chirish" Tag="MoveReferenceTo"/>
+            <MenuItem Header="Katta belgi" Tag="LargeToggle" IsCheckable="True" Click="ItemMenu_ToggleLarge_Click"/>
             <Separator/>
-            <MenuItem Header="Insert label above..." Tag="InsertLabel" Click="ItemMenu_InsertLabelAbove_Click"/>
-            <MenuItem Header="Rename label..." Tag="RenameLabel" Visibility="Collapsed" Click="LabelMenu_Rename_Click"/>
-            <MenuItem Header="Remove from picket" Tag="Remove" Click="ItemMenu_Remove_Click"/>
+            <MenuItem Header="Yuqoriga sarlavha qo‘shish…" Tag="InsertLabel" Click="ItemMenu_InsertLabelAbove_Click"/>
+            <MenuItem Header="Sarlavhani o‘zgartirish…" Tag="RenameLabel" Visibility="Collapsed" Click="LabelMenu_Rename_Click"/>
+            <MenuItem Header="Guruhdan olib tashlash" Tag="Remove" Click="ItemMenu_Remove_Click"/>
         </ContextMenu>
         <ContextMenu x:Key="LabelContextMenu" DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}">
-            <MenuItem Header="Rename label..." Click="LabelMenu_Rename_Click"/>
-            <MenuItem Header="Remove label" Click="LabelMenu_Remove_Click"/>
+            <MenuItem Header="Sarlavhani o‘zgartirish…" Click="LabelMenu_Rename_Click"/>
+            <MenuItem Header="Sarlavhani olib tashlash" Click="LabelMenu_Remove_Click"/>
         </ContextMenu>
         <ContextMenu x:Key="TitleContextMenu">
-            <MenuItem Header="Add…">
-                <MenuItem Header="Add files..." InputGestureText="Ctrl+O" Click="AddFiles_Click"/>
-                <MenuItem Header="Add folders..." InputGestureText="Ctrl+Shift+O" Click="AddFolder_Click"/>
-                <MenuItem Header="Add label..." Click="TitleMenu_AddLabel_Click"/>
+            <MenuItem Header="Qo‘shish…">
+                <MenuItem Header="Fayllarni qo‘shish…" InputGestureText="Ctrl+O" Click="AddFiles_Click"/>
+                <MenuItem Header="Papkalarni qo‘shish…" InputGestureText="Ctrl+Shift+O" Click="AddFolder_Click"/>
+                <MenuItem Header="Sarlavha qo‘shish…" Click="TitleMenu_AddLabel_Click"/>
             </MenuItem>
-            <MenuItem Header="Find reference…" InputGestureText="Ctrl+F" Click="FindReference_Click"/>
-            <MenuItem Header="Undo" Tag="Undo" InputGestureText="Ctrl+Z" Click="Undo_Click"/>
+            <MenuItem Header="Havolani topish…" InputGestureText="Ctrl+F" Click="FindReference_Click"/>
+            <MenuItem Header="Bekor qilish" Tag="Undo" InputGestureText="Ctrl+Z" Click="Undo_Click"/>
             <Separator/>
-            <MenuItem Header="Rename picket..." InputGestureText="F2" Click="TitleMenu_Rename_Click"/>
-            <MenuItem Header="Stack" Tag="StackMenu">
-                <MenuItem Header="Open one picket at a time" Tag="Accordion" IsCheckable="True" Click="TitleMenu_Accordion_Click"/>
-                <MenuItem Header="Move picket earlier" Tag="Earlier" Click="MoveSectionEarlier_Click"/>
-                <MenuItem Header="Move picket later" Tag="Later" Click="MoveSectionLater_Click"/>
-                <MenuItem Header="Detach this picket" Click="UnlinkBtn_Click"/>
+            <MenuItem Header="Guruh nomini o‘zgartirish…" InputGestureText="F2" Click="TitleMenu_Rename_Click"/>
+            <MenuItem Header="To‘plam" Tag="StackMenu">
+                <MenuItem Header="Bir vaqtda bitta guruhni ochish" Tag="Accordion" IsCheckable="True" Click="TitleMenu_Accordion_Click"/>
+                <MenuItem Header="Guruhni oldinga surish" Tag="Earlier" Click="MoveSectionEarlier_Click"/>
+                <MenuItem Header="Guruhni orqaga surish" Tag="Later" Click="MoveSectionLater_Click"/>
+                <MenuItem Header="Guruhni to‘plamdan ajratish" Click="UnlinkBtn_Click"/>
                 <Separator/>
-                <MenuItem Header="Previous page" Tag="PreviousPage" InputGestureText="Ctrl+PageUp" Click="PreviousStackPage_Click"/>
-                <MenuItem Header="Next page" Tag="NextPage" InputGestureText="Ctrl+PageDown" Click="NextStackPage_Click"/>
+                <MenuItem Header="Oldingi sahifa" Tag="PreviousPage" InputGestureText="Ctrl+PageUp" Click="PreviousStackPage_Click"/>
+                <MenuItem Header="Keyingi sahifa" Tag="NextPage" InputGestureText="Ctrl+PageDown" Click="NextStackPage_Click"/>
             </MenuItem>
-            <MenuItem Header="Appearance">
-                <MenuItem Header="Height">
-                    <MenuItem Header="Automatic (up to two rows)" Tag="AutoHeight" IsCheckable="True" Click="AutoHeight_Click"/>
-                    <MenuItem Header="Manual" Tag="ManualHeight" IsCheckable="True" Click="ManualHeight_Click"/>
+            <MenuItem Header="Ko‘rinish">
+                <MenuItem Header="Balandlik">
+                    <MenuItem Header="Avtomatik (ikki qatorgacha)" Tag="AutoHeight" IsCheckable="True" Click="AutoHeight_Click"/>
+                    <MenuItem Header="Qo‘lda" Tag="ManualHeight" IsCheckable="True" Click="ManualHeight_Click"/>
                 </MenuItem>
-                <MenuItem Header="Color" Tag="ColorMenu">
-                <MenuItem Header="Porcelain" Tag="porcelain" IsCheckable="True" Click="TitleMenu_SetColor_Click">
+                <MenuItem Header="Rang" Tag="ColorMenu">
+                <MenuItem Header="Chinni" Tag="porcelain" IsCheckable="True" Click="TitleMenu_SetColor_Click">
                     <MenuItem.Icon><Rectangle Width="14" Height="14" Stroke="#A79F94" StrokeThickness="1"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#DFC9A9" Offset="0.5"/><GradientStop Color="#F1E4CE" Offset="0.5"/></LinearGradientBrush></Rectangle.Fill></Rectangle></MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Sandstone" Tag="sandstone" IsCheckable="True" Click="TitleMenu_SetColor_Click">
+                <MenuItem Header="Qumtosh" Tag="sandstone" IsCheckable="True" Click="TitleMenu_SetColor_Click">
                     <MenuItem.Icon><Rectangle Width="14" Height="14" Stroke="#A08055" StrokeThickness="1"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#E7B974" Offset="0.5"/><GradientStop Color="#F3D39F" Offset="0.5"/></LinearGradientBrush></Rectangle.Fill></Rectangle></MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Sage" Tag="sage" IsCheckable="True" Click="TitleMenu_SetColor_Click">
+                <MenuItem Header="Mavrak" Tag="sage" IsCheckable="True" Click="TitleMenu_SetColor_Click">
                     <MenuItem.Icon><Rectangle Width="14" Height="14" Stroke="#7B9680" StrokeThickness="1"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#AACD9F" Offset="0.5"/><GradientStop Color="#C9E2BF" Offset="0.5"/></LinearGradientBrush></Rectangle.Fill></Rectangle></MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Ocean" Tag="ocean" IsCheckable="True" Click="TitleMenu_SetColor_Click">
+                <MenuItem Header="Okean" Tag="ocean" IsCheckable="True" Click="TitleMenu_SetColor_Click">
                     <MenuItem.Icon><Rectangle Width="14" Height="14" Stroke="#6E91A4" StrokeThickness="1"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#99C4DA" Offset="0.5"/><GradientStop Color="#BFDDEB" Offset="0.5"/></LinearGradientBrush></Rectangle.Fill></Rectangle></MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Lavender" Tag="lavender" IsCheckable="True" Click="TitleMenu_SetColor_Click">
+                <MenuItem Header="Lavanda" Tag="lavender" IsCheckable="True" Click="TitleMenu_SetColor_Click">
                     <MenuItem.Icon><Rectangle Width="14" Height="14" Stroke="#8E7BA5" StrokeThickness="1"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#C5ABE0" Offset="0.5"/><GradientStop Color="#DDCBEE" Offset="0.5"/></LinearGradientBrush></Rectangle.Fill></Rectangle></MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Rose" Tag="rose" IsCheckable="True" Click="TitleMenu_SetColor_Click">
+                <MenuItem Header="Atirgul" Tag="rose" IsCheckable="True" Click="TitleMenu_SetColor_Click">
                     <MenuItem.Icon><Rectangle Width="14" Height="14" Stroke="#A67B84" StrokeThickness="1"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#DEA5B7" Offset="0.5"/><GradientStop Color="#F0C6D1" Offset="0.5"/></LinearGradientBrush></Rectangle.Fill></Rectangle></MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Midnight" Tag="midnight" IsCheckable="True" Click="TitleMenu_SetColor_Click">
+                <MenuItem Header="Tun" Tag="midnight" IsCheckable="True" Click="TitleMenu_SetColor_Click">
                     <MenuItem.Icon><Rectangle Width="14" Height="14" Stroke="#496B91" StrokeThickness="1"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#1D3555" Offset="0.5"/><GradientStop Color="#131B29" Offset="0.5"/></LinearGradientBrush></Rectangle.Fill></Rectangle></MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Graphite" Tag="graphite" IsCheckable="True" Click="TitleMenu_SetColor_Click">
+                <MenuItem Header="Grafit" Tag="graphite" IsCheckable="True" Click="TitleMenu_SetColor_Click">
                     <MenuItem.Icon><Rectangle Width="14" Height="14" Stroke="#58616E" StrokeThickness="1"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#292E36" Offset="0.5"/><GradientStop Color="#181B20" Offset="0.5"/></LinearGradientBrush></Rectangle.Fill></Rectangle></MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Black" Tag="black" IsCheckable="True" Click="TitleMenu_SetColor_Click">
+                <MenuItem Header="Qora" Tag="black" IsCheckable="True" Click="TitleMenu_SetColor_Click">
                     <MenuItem.Icon><Rectangle Width="14" Height="14" Stroke="#555555"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#101010" Offset="0.5"/><GradientStop Color="#000000" Offset="0.5"/></LinearGradientBrush></Rectangle.Fill></Rectangle></MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="White" Tag="white" IsCheckable="True" Click="TitleMenu_SetColor_Click">
+                <MenuItem Header="Oq" Tag="white" IsCheckable="True" Click="TitleMenu_SetColor_Click">
                     <MenuItem.Icon><Rectangle Width="14" Height="14" Stroke="#B3B3B3"><Rectangle.Fill><LinearGradientBrush StartPoint="0,0" EndPoint="0,1"><GradientStop Color="#F2F2F2" Offset="0.5"/><GradientStop Color="#FFFFFF" Offset="0.5"/></LinearGradientBrush></Rectangle.Fill></Rectangle></MenuItem.Icon>
                 </MenuItem>
                 <Separator/>
-                <MenuItem Header="Apply current theme to all Pickets" Click="TitleMenu_ApplyColorToAll_Click"/>
+                <MenuItem Header="Joriy ko‘rinishni barcha guruhlarga qo‘llash" Click="TitleMenu_ApplyColorToAll_Click"/>
                 </MenuItem>
-                <MenuItem Header="Transparency" Tag="TransparencyMenu">
-                <MenuItem Header="Solid (100%)" Tag="solid"  IsCheckable="True" Click="TitleMenu_SetTransparency_Click"/>
-                <MenuItem Header="Light (65%)"  Tag="light"  IsCheckable="True" Click="TitleMenu_SetTransparency_Click"/>
-                <MenuItem Header="Medium (40%)" Tag="medium" IsCheckable="True" Click="TitleMenu_SetTransparency_Click"/>
-                <MenuItem Header="Heavy (20%)"  Tag="heavy"  IsCheckable="True" Click="TitleMenu_SetTransparency_Click"/>
+                <MenuItem Header="Shaffoflik" Tag="TransparencyMenu">
+                <MenuItem Header="To‘liq (100%)" Tag="solid"  IsCheckable="True" Click="TitleMenu_SetTransparency_Click"/>
+                <MenuItem Header="Yengil (65%)"  Tag="light"  IsCheckable="True" Click="TitleMenu_SetTransparency_Click"/>
+                <MenuItem Header="O‘rtacha (40%)" Tag="medium" IsCheckable="True" Click="TitleMenu_SetTransparency_Click"/>
+                <MenuItem Header="Kuchli (20%)"  Tag="heavy"  IsCheckable="True" Click="TitleMenu_SetTransparency_Click"/>
                 <Separator/>
                 <MenuItem Tag="custom" StaysOpenOnClick="True" IsCheckable="True">
                     <MenuItem.Header>
                         <StackPanel Orientation="Vertical" Width="200" Margin="0,2">
-                            <TextBlock Tag="CustomLabel" Text="Custom: 50%" Margin="0,0,0,2"/>
+                            <TextBlock Tag="CustomLabel" Text="Boshqa: 50%" Margin="0,0,0,2"/>
                             <Slider Tag="CustomSlider"
-                                    Minimum="0" Maximum="100" Value="50" AutomationProperties.Name="Picket opacity"
+                                    Minimum="0" Maximum="100" Value="50" AutomationProperties.Name="Guruh shaffofligi"
                                     Width="190" TickFrequency="5"
                                     ValueChanged="TransparencyCustomSlider_ValueChanged"/>
                         </StackPanel>
                     </MenuItem.Header>
                 </MenuItem>
                 </MenuItem>
-                <MenuItem Header="Blur background" Tag="BlurToggle" IsCheckable="True" Click="TitleMenu_ToggleBlur_Click"/>
+                <MenuItem Header="Orqa fonni xiralashtirish" Tag="BlurToggle" IsCheckable="True" Click="TitleMenu_ToggleBlur_Click"/>
             </MenuItem>
             <Separator/>
-            <MenuItem Header="New picket" InputGestureText="Ctrl+N" Click="TitleMenu_NewPicket_Click"/>
-            <MenuItem Header="Delete this picket..." Click="TitleMenu_DeletePicket_Click"/>
-            <MenuItem Header="Settings and help">
-                <MenuItem Header="Check all references" Click="TitleMenu_CleanMissing_Click"/>
-                <MenuItem Header="Change focus shortcut..." Click="ShortcutSettings_Click"/>
-                <MenuItem Header="Start at sign-in" Tag="LaunchAtLogin" IsCheckable="True" Click="TitleMenu_ToggleLaunchAtLogin_Click"/>
+            <MenuItem Header="Yangi guruh" InputGestureText="Ctrl+N" Click="TitleMenu_NewPicket_Click"/>
+            <MenuItem Header="Ushbu guruhni o‘chirish…" Click="TitleMenu_DeletePicket_Click"/>
+            <MenuItem Header="Sozlamalar va yordam">
+                <MenuItem Header="Barcha havolalarni tekshirish" Click="TitleMenu_CleanMissing_Click"/>
+                <MenuItem Header="Faollashtirish tugmalarini o‘zgartirish…" Click="ShortcutSettings_Click"/>
+                <MenuItem Header="Tizimga kirganda ishga tushirish" Tag="LaunchAtLogin" IsCheckable="True" Click="TitleMenu_ToggleLaunchAtLogin_Click"/>
                 <Separator/>
-                <MenuItem Header="Keyboard help..." InputGestureText="F1" Click="KeyboardHelp_Click"/>
-                <MenuItem Header="About Pickets..." Click="TitleMenu_About_Click"/>
-                <MenuItem Header="Advanced">
-                    <MenuItem Header="Release all icons and quit..." Click="TitleMenu_RestoreAll_Click"/>
-                    <MenuItem Header="Exit and keep icons hidden" Click="TitleMenu_ExitHidden_Click"/>
+                <MenuItem Header="Klaviatura bo‘yicha yordam…" InputGestureText="F1" Click="KeyboardHelp_Click"/>
+                <MenuItem Header="Pickets haqida…" Click="TitleMenu_About_Click"/>
+                <MenuItem Header="Qo‘shimcha amallar">
+                    <MenuItem Header="Barcha belgilarni tiklab chiqish…" Click="TitleMenu_RestoreAll_Click"/>
+                    <MenuItem Header="Belgilarni yashirin qoldirib chiqish" Click="TitleMenu_ExitHidden_Click"/>
                 </MenuItem>
             </MenuItem>
             <Separator/>
-            <MenuItem Header="Hide Pickets" Click="TitleMenu_HideAll_Click"/>
-            <MenuItem Header="Quit Pickets..." Click="TitleMenu_Quit_Click"/>
+            <MenuItem Header="Pickets’ni yashirish" Click="TitleMenu_HideAll_Click"/>
+            <MenuItem Header="Pickets’dan chiqish…" Click="TitleMenu_Quit_Click"/>
         </ContextMenu>
 
         <!-- Tooltips need a solid background; default semi-transparent styling over a blurred picket
@@ -206,7 +206,7 @@
                             ContextMenu="{StaticResource TitleContextMenu}" ContextMenuOpening="TitleBar_ContextMenuOpening"
                             HorizontalContentAlignment="Left" Padding="8,0,2,0"
                             PreviewMouseLeftButtonDown="TitleBar_MouseLeftButtonDown" Click="TitleToggle_Click"
-                            AutomationProperties.HelpText="Expand or collapse this picket. Drag the title to move its stack. F2 renames; F1 opens help.">
+                            AutomationProperties.HelpText="Guruhni ochish yoki yig‘ish. To‘plamni surish uchun sarlavhani torting. F2 — nomini o‘zgartirish, F1 — yordam.">
                             <DockPanel LastChildFill="True">
                                 <Grid DockPanel.Dock="Left" Width="12" Height="12" Margin="0,0,6,0" VerticalAlignment="Center"
                                       IsHitTestVisible="False">
@@ -219,26 +219,26 @@
                                         </Path.RenderTransform>
                                     </Path>
                                 </Grid>
-                                <TextBlock x:Name="TitleText" Text="Picket" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock x:Name="TitleText" Text="Guruh" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
                             </DockPanel>
                         </local:PicketHeaderButton>
                         <TextBox x:Name="TitleEditBox" Grid.Column="0" Visibility="Collapsed"
                             VerticalAlignment="Center" Margin="10,1,4,1"
-                            AutomationProperties.Name="Picket name"
+                            AutomationProperties.Name="Guruh nomi"
                             Background="{DynamicResource PicketEditorBackground}"
                             Foreground="{DynamicResource PicketTitleForeground}"
                             BorderBrush="{DynamicResource PicketEditorBorder}"
                             KeyDown="TitleEditBox_KeyDown" LostFocus="TitleEditBox_LostFocus"/>
                         <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,4,0">
                             <Button x:Name="UnlinkBtn" Width="24" Height="26" Style="{StaticResource HeaderButton}" Content="↗"
-                                AutomationProperties.Name="Detach picket" ToolTip="Detach this picket from its stack" Visibility="Collapsed" Click="UnlinkBtn_Click"/>
+                                AutomationProperties.Name="Guruhni ajratish" ToolTip="Ushbu guruhni to‘plamdan ajratish" Visibility="Collapsed" Click="UnlinkBtn_Click"/>
                             <Button x:Name="PreviousPageButton" Width="24" Height="26" Style="{StaticResource HeaderButton}" Content="‹" Visibility="Collapsed"
-                                AutomationProperties.Name="Previous stack page" Click="PreviousStackPage_Click"/>
+                                AutomationProperties.Name="To‘plamning oldingi sahifasi" Click="PreviousStackPage_Click"/>
                             <Button x:Name="NextPageButton" Width="24" Height="26" Style="{StaticResource HeaderButton}" Content="›" Visibility="Collapsed"
-                                AutomationProperties.Name="Next stack page" Click="NextStackPage_Click"/>
+                                AutomationProperties.Name="To‘plamning keyingi sahifasi" Click="NextStackPage_Click"/>
                             <Button x:Name="MenuButton" Width="26" Height="26" Style="{StaticResource HeaderButton}" Content="⋯"
                                 ContextMenu="{StaticResource TitleContextMenu}" ContextMenuOpening="TitleBar_ContextMenuOpening"
-                                AutomationProperties.Name="Picket menu" ToolTip="Picket menu: add files, customize, and create pickets" Click="MenuButton_Click"/>
+                                AutomationProperties.Name="Guruh menyusi" ToolTip="Guruh menyusi: fayl qo‘shish, ko‘rinishni sozlash va guruh yaratish" Click="MenuButton_Click"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -247,10 +247,10 @@
                         TextElement.Foreground="{DynamicResource PicketItemForeground}">
                     <WrapPanel VerticalAlignment="Center">
                         <TextBlock x:Name="SelectionCount" VerticalAlignment="Center" Margin="3,0,10,0" AutomationProperties.LiveSetting="Polite"/>
-                        <Button Content="Move" Padding="6,3" Style="{StaticResource HeaderButton}" Click="SelectionMove_Click" AutomationProperties.Name="Move selected items"/>
-                        <Button Content="Size" Padding="6,3" Style="{StaticResource HeaderButton}" Click="SelectionSize_Click" AutomationProperties.Name="Size selected icons"/>
-                        <Button Content="Remove" Padding="6,3" Style="{StaticResource HeaderButton}" Click="SelectionRemove_Click" AutomationProperties.Name="Remove selected references"/>
-                        <Button Content="Clear" Padding="6,3" Style="{StaticResource HeaderButton}" Click="SelectionClear_Click" AutomationProperties.Name="Clear selection"/>
+                        <Button Content="Ko‘chirish" Padding="6,3" Style="{StaticResource HeaderButton}" Click="SelectionMove_Click" AutomationProperties.Name="Tanlanganlarni ko‘chirish"/>
+                        <Button Content="O‘lcham" Padding="6,3" Style="{StaticResource HeaderButton}" Click="SelectionSize_Click" AutomationProperties.Name="Tanlangan belgilar o‘lchami"/>
+                        <Button Content="Olib tashlash" Padding="6,3" Style="{StaticResource HeaderButton}" Click="SelectionRemove_Click" AutomationProperties.Name="Tanlangan havolalarni olib tashlash"/>
+                        <Button Content="Tozalash" Padding="6,3" Style="{StaticResource HeaderButton}" Click="SelectionClear_Click" AutomationProperties.Name="Tanlovni tozalash"/>
                     </WrapPanel>
                 </Border>
                 <Grid x:Name="BodyArea" ClipToBounds="True"
@@ -264,7 +264,7 @@
                               Background="Transparent">
                     <Grid>
                     <ListBox x:Name="ItemsHost" SelectionMode="Extended" BorderThickness="0" Padding="0" Background="Transparent" SelectionChanged="Items_SelectionChanged"
-                        AutomationProperties.Name="Picket references" KeyboardNavigation.TabNavigation="Once"
+                        AutomationProperties.Name="Guruhdagi havolalar" KeyboardNavigation.TabNavigation="Once"
                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
@@ -309,7 +309,7 @@
                                         </MultiBinding>
                                     </StackPanel.Width>
                                     <Grid Width="{Binding IconSize}" Height="{Binding IconSize}" Margin="0,4,0,4">
-                                        <TextBlock Text="&#xE8A5;" FontFamily="Segoe MDL2 Assets" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center">
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock">
                                                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -353,11 +353,11 @@
                                 <Style.Triggers><DataTrigger Binding="{Binding HasItems, ElementName=ItemsHost}" Value="False"><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers>
                             </Style>
                         </StackPanel.Style>
-                        <TextBlock Text="Drop files here" FontWeight="SemiBold" FontSize="16" TextWrapping="Wrap"/>
-                        <TextBlock Text="Your files stay where they are." TextWrapping="Wrap" Margin="0,5,0,12"/>
+                        <TextBlock Text="Fayllarni shu yerga tashlang" FontWeight="SemiBold" FontSize="16" TextWrapping="Wrap"/>
+                        <TextBlock Text="Fayllaringiz o‘z joyida qoladi." TextWrapping="Wrap" Margin="0,5,0,12"/>
                         <WrapPanel>
-                            <Button Content="Add files…" Click="AddFiles_Click" Padding="8,5" Margin="0,0,6,6" Style="{StaticResource HeaderButton}" Background="{DynamicResource PicketSectionBackground}"/>
-                            <Button Content="Add folders…" Click="AddFolder_Click" Padding="8,5" Margin="0,0,0,6" Style="{StaticResource HeaderButton}" Background="{DynamicResource PicketSectionBackground}"/>
+                            <Button Content="Fayllarni qo‘shish…" Click="AddFiles_Click" Padding="8,5" Margin="0,0,6,6" Style="{StaticResource HeaderButton}" Background="{DynamicResource PicketSectionBackground}"/>
+                            <Button Content="Papkalarni qo‘shish…" Click="AddFolder_Click" Padding="8,5" Margin="0,0,0,6" Style="{StaticResource HeaderButton}" Background="{DynamicResource PicketSectionBackground}"/>
                         </WrapPanel>
                     </StackPanel>
                     </Grid>

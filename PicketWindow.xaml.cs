@@ -533,11 +533,11 @@ public partial class PicketWindow : Window
     {
         if (Application.Current is App app && app.PicketCount <= 1)
         {
-            MessageBox.Show("Can't delete the last picket -- create another one first.",
+            MessageBox.Show("Oxirgi guruhni o‘chirib bo‘lmaydi. Avval boshqa guruh yarating.",
                 "Pickets", MessageBoxButton.OK, MessageBoxImage.Information);
             return;
         }
-        var result = MessageBox.Show("Delete this picket? Captured icons will be restored to the desktop.", "Pickets",
+        var result = MessageBox.Show("Ushbu guruh o‘chirilsinmi? Unga olingan belgilar ish stoliga qaytariladi.", "Pickets",
             MessageBoxButton.OKCancel, MessageBoxImage.Question);
         if (result != MessageBoxResult.OK) return;
         if (Application.Current is App app2) app2.DeletePicket(this);
@@ -629,14 +629,14 @@ public partial class PicketWindow : Window
         {
             var description = (Application.Current as App)?.UndoHistory.Description;
             undo.IsEnabled = description != null;
-            undo.Header = description == null ? "Undo" : "Undo: " + description;
+            undo.Header = description == null ? "Bekor qilish" : "Bekor qilish: " + description;
         }
         var group = ComputeTouchingCluster();
         var position = group.IndexOf(this);
         if (FindMenuItemByTag(cm.Items, "StackMenu") is MenuItem stack)
         {
             stack.IsEnabled = group.Count > 1;
-            stack.Header = _stackPageCount > 1 ? $"Stack (page {_stackPageIndex + 1} of {_stackPageCount})" : "Stack";
+            stack.Header = _stackPageCount > 1 ? $"To‘plam ({_stackPageIndex + 1}/{_stackPageCount}-sahifa)" : "To‘plam";
         }
         if (FindMenuItemByTag(cm.Items, "Earlier") is MenuItem earlier) earlier.IsEnabled = position > 0;
         if (FindMenuItemByTag(cm.Items, "Later") is MenuItem later) later.IsEnabled = position + 1 < group.Count;
@@ -657,7 +657,7 @@ public partial class PicketWindow : Window
             slider.Value = CurrentTransparencyPercent;
             _suppressSliderEvent = false;
         }
-        if (label != null) label.Text = $"Custom: {CurrentTransparencyPercent}%";
+        if (label != null) label.Text = $"Boshqa: {CurrentTransparencyPercent}%";
     }
 
     private static void RefreshSubmenuChecks(ContextMenu cm, string parentTag, string selectedKey)
@@ -699,7 +699,7 @@ public partial class PicketWindow : Window
         if (sender is Slider s && s.Parent is StackPanel sp)
         {
             var label = sp.Children.OfType<TextBlock>().FirstOrDefault(t => "CustomLabel".Equals(t.Tag));
-            if (label != null) label.Text = $"Custom: {_transparencyCustomPercent}%";
+            if (label != null) label.Text = $"Boshqa: {_transparencyCustomPercent}%";
         }
 
         ApplyVisuals();
@@ -1247,9 +1247,9 @@ public partial class PicketWindow : Window
                     "RenameLabel" => selected.Length == 1 && files.Length == 0 ? Visibility.Visible : Visibility.Collapsed,
                     _ => Visibility.Visible
                 };
-                if (Equals(entry.Tag, "Open")) entry.Header = files.Length > 1 ? $"Open {files.Length} references" : "Open";
-                if (Equals(entry.Tag, "Remove")) entry.Header = selected.Length > 1 ? $"Remove {selected.Length} items from picket" : "Remove from picket";
-                if (Equals(entry.Tag, "MoveReferenceTo")) entry.Header = selected.Length > 1 ? $"Move {selected.Length} items to" : "Move reference to";
+                if (Equals(entry.Tag, "Open")) entry.Header = files.Length > 1 ? $"{files.Length} ta havolani ochish" : "Ochish";
+                if (Equals(entry.Tag, "Remove")) entry.Header = selected.Length > 1 ? $"Guruhdan {selected.Length} ta elementni olib tashlash" : "Guruhdan olib tashlash";
+                if (Equals(entry.Tag, "MoveReferenceTo")) entry.Header = selected.Length > 1 ? $"{selected.Length} ta elementni ko‘chirish" : "Havolani ko‘chirish";
             }
             var largeItem = cm.Items.OfType<MenuItem>()
                 .FirstOrDefault(mi => "LargeToggle".Equals(mi.Tag));
@@ -1314,7 +1314,7 @@ public partial class PicketWindow : Window
     // === Section labels ===
     private void TitleMenu_AddLabel_Click(object sender, RoutedEventArgs e)
     {
-        var text = InputDialog.Show(this, "Section label", "Label text:", "Section");
+        var text = InputDialog.Show(this, "Bo‘lim sarlavhasi", "Sarlavha matni:", "Bo‘lim");
         if (string.IsNullOrWhiteSpace(text)) return;
         var label = PicketItem.CreateLabel(text.Trim());
         Items.Add(label);
@@ -1324,7 +1324,7 @@ public partial class PicketWindow : Window
     private void ItemMenu_InsertLabelAbove_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not MenuItem mi || mi.DataContext is not PicketItem clicked) return;
-        var text = InputDialog.Show(this, "Section label", "Label text:", "Section");
+        var text = InputDialog.Show(this, "Bo‘lim sarlavhasi", "Sarlavha matni:", "Bo‘lim");
         if (string.IsNullOrWhiteSpace(text)) return;
         var idx = Items.IndexOf(clicked);
         if (idx < 0) idx = Items.Count;
@@ -1337,7 +1337,7 @@ public partial class PicketWindow : Window
     {
         if (sender is not MenuItem mi || mi.DataContext is not PicketItem label) return;
         if (label.Kind != ItemKind.Label) return;
-        var text = InputDialog.Show(this, "Rename label", "Label text:", label.LabelText);
+        var text = InputDialog.Show(this, "Sarlavha nomini o‘zgartirish", "Sarlavha matni:", label.LabelText);
         if (string.IsNullOrWhiteSpace(text)) return;
         label.LabelText = text.Trim();
         RaiseLayoutChanged();

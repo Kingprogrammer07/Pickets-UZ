@@ -79,7 +79,7 @@ public sealed class AccessibilityTests
             Assert.True(music.Items[0].IsSelected);
             Assert.Single(list.SelectedItems);
             Assert.NotNull(item.ContextMenu);
-            Assert.Equal("Picket menu", AutomationProperties.GetName((Button)music.FindName("MenuButton")));
+            Assert.Equal("Guruh menyusi", AutomationProperties.GetName((Button)music.FindName("MenuButton")));
             Assert.Equal(280, music.ToState().Height);
             Capture(root, "pickets-standard.png", music.Width, music.Height);
             if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PICKETS_TEST_RENDER_DIR")))
@@ -275,7 +275,7 @@ public sealed class AccessibilityTests
             window.EndBoxSelection();
             Assert.Equal(Visibility.Collapsed, ((FrameworkElement)window.FindName("SelectionBox")).Visibility);
             Assert.Equal(Visibility.Visible, ((FrameworkElement)window.FindName("SelectionActions")).Visibility);
-            Assert.Equal("2 selected", ((TextBlock)window.FindName("SelectionCount")).Text);
+            Assert.Equal("2 ta tanlangan", ((TextBlock)window.FindName("SelectionCount")).Text);
             host.UpdateLayout();
             Capture((FrameworkElement)content, "selection-actions.png", 360, 225);
             Assert.Equal(2, window.ActionItems(window.Items[0]).Length);
@@ -284,7 +284,7 @@ public sealed class AccessibilityTests
             prepareMenu.Invoke(window, [selectedCell, null!]);
             var menu = selectedCell.ContextMenu;
             menu.DataContext = window.Items[0];
-            Assert.Contains(menu.Items.OfType<MenuItem>(), entry => Equals(entry.Header, "Remove 2 items from picket"));
+            Assert.Contains(menu.Items.OfType<MenuItem>(), entry => Equals(entry.Header, "Guruhdan 2 ta elementni olib tashlash"));
             var large = menu.Items.OfType<MenuItem>().Single(entry => Equals(entry.Tag, "LargeToggle"));
             large.IsChecked = true;
             large.RaiseEvent(new RoutedEventArgs(MenuItem.ClickEvent));
@@ -758,7 +758,7 @@ public sealed class AccessibilityTests
         LayoutAndCapture(emptyRoot, "pickets-empty.png", 340, 280);
         var message = (StackPanel)empty.FindName("EmptyState");
         Assert.Equal(Visibility.Visible, message.Visibility);
-        Assert.Contains(Descendants<Button>(message), b => Equals(b.Content, "Add files…"));
+        Assert.Contains(Descendants<Button>(message), b => Equals(b.Content, "Fayllarni qo‘shish…"));
         empty.Items.Add(PicketItem.FromPath(@"Z:\Offline\keep.txt"));
         empty.Items[0].OriginalDesktopPos = new POINT { X = 17, Y = 29 };
         emptyRoot.UpdateLayout();
@@ -806,7 +806,7 @@ public sealed class AccessibilityTests
         {
             var start = (Button)welcome.FindName("GetStartedButton");
             Assert.False(start.IsEnabled);
-            var recheck = Descendants<Button>((FrameworkElement)welcome.Content).Single(b => Equals(b.Content, "Check again"));
+            var recheck = Descendants<Button>((FrameworkElement)welcome.Content).Single(b => Equals(b.Content, "Qayta tekshirish"));
             readiness = new DesktopReadiness(false, false);
             recheck.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
             Assert.True(start.IsEnabled);
@@ -824,7 +824,7 @@ public sealed class AccessibilityTests
                 LayoutAndCapture(content, $"dialog-{i}-small-large-contrast.png", 360, 300);
                 var scroll = Descendants<ScrollViewer>(content).First();
                 Assert.True(scroll.ScrollableHeight > 0);
-                var action = i == 0 ? start : Descendants<Button>(content).Single(b => Equals(b.Content, "Close"));
+                var action = i == 0 ? start : Descendants<Button>(content).Single(b => Equals(b.Content, "Yopish"));
                 var bounds = action.TransformToAncestor(content).TransformBounds(new Rect(action.RenderSize));
                 Assert.True(bounds.Top >= 0 && bounds.Bottom <= 300, bounds.ToString());
             }

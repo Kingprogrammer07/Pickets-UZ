@@ -20,7 +20,7 @@ public static class InputDialog
         };
 
         var ok = new Button { Content = "OK", IsDefault = true, MinWidth = 72, Margin = new Thickness(4, 0, 0, 0) };
-        var cancel = new Button { Content = "Cancel", IsCancel = true, MinWidth = 72, Margin = new Thickness(4, 0, 0, 0) };
+        var cancel = new Button { Content = "Bekor qilish", IsCancel = true, MinWidth = 72, Margin = new Thickness(4, 0, 0, 0) };
 
         var buttons = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Right };
         buttons.Children.Add(ok);
